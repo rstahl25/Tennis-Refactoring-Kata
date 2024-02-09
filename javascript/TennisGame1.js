@@ -36,7 +36,7 @@ TennisGame1.prototype.getScore = function() {
         }
     //If scores are not equal, determine which player has advantag/victory
 
-        //Checks to see that both players have greater than or equal to 4 points and their scores are not currently equal
+        //Checks to see that it is match point and the player's scores are not currently equal
     } else if (this.m_score1 >= 4 || this.m_score2 >= 4) {
 
         //Checks difference between scores to determine advantage
