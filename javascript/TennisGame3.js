@@ -17,7 +17,12 @@ TennisGame3.prototype.getScore = function() {
         //if not match point, assign proper term to player who scored
         var scoreUpdate;
         scoreUpdate = pointNames[this.p1Points];
-        return (this.p1Points == this.p2Points) ? scoreUpdate + "-All" : scoreUpdate + "-" + pointNames[this.p2Points];
+
+        if(this.p1Points == this.p2Points) {
+            return scoreUpdate + "-All"
+        } else {
+            return scoreUpdate + "-" + pointNames[this.p2Points];
+        }
     } else {
         // if match point and tied, return 'Duce
         if (this.p1Points == this.p2Points)
@@ -26,7 +31,12 @@ TennisGame3.prototype.getScore = function() {
         //If match point and not tied, award 'Advantage' or 'Win' to proper player
         var scorerName;
         scorerName = this.p1Points > this.p2Points ? this.player1Name : this.player2Name;
-        return ((this.p1Points - this.p2Points) * (this.p1Points - this.p2Points) == 1) ? "Advantage " + scorerName : "Win for " + scorerName;
+
+        if((this.p1Points - this.p2Points) * (this.p1Points - this.p2Points) == 1) {
+            return "Advantage " + scorerName;
+        } else {
+            return "Win for " + scorerName;
+        }
     }
 };
 
