@@ -1,30 +1,40 @@
-var TennisGame3 = function(p1N, p2N) {
-    this.p2 = 0;
-    this.p1 = 0;
+var pointNames = ["Love", "Fifteen", "Thirty", "Forty"];
 
-    this.p1N = p1N;
-    this.p2N = p2N;
+var TennisGame3 = function(player1Name, player2Name) {
+    this.p2Points = 0;
+    this.p1Points = 0;
+
+    this.player1Name = player1Name;
+    this.player2Name = player2Name;
 };
 
 TennisGame3.prototype.getScore = function() {
-    var s;
-    if ((this.p1 < 4 && this.p2 < 4) && (this.p1 + this.p2 < 6)) {
-        var p = ["Love", "Fifteen", "Thirty", "Forty"];
-        s = p[this.p1];
-        return (this.p1 == this.p2) ? s + "-All" : s + "-" + p[this.p2];
+    //This variable is used in two different places with two different meanings
+    //var s;
+
+    // Checks if it is not match point
+    if ((this.p1Points < 4 && this.p2Points < 4) && (this.p1Points + this.p2Points < 6)) {
+        //if not match point, assign proper term to player who scored
+        var scoreUpdate;
+        scoreUpdate = pointNames[this.p1Points];
+        return (this.p1Points == this.p2Points) ? scoreUpdate + "-All" : scoreUpdate + "-" + pointNames[this.p2Points];
     } else {
-        if (this.p1 == this.p2)
+        // if match point and tied, return 'Duce
+        if (this.p1Points == this.p2Points)
             return "Deuce";
-        s = this.p1 > this.p2 ? this.p1N : this.p2N;
-        return ((this.p1 - this.p2) * (this.p1 - this.p2) == 1) ? "Advantage " + s : "Win for " + s;
+
+        //If match point and not tied, award 'Advantage' or 'Win' to proper player
+        var scorerName;
+        scorerName = this.p1Points > this.p2Points ? this.player1Name : this.player2Name;
+        return ((this.p1Points - this.p2Points) * (this.p1Points - this.p2Points) == 1) ? "Advantage " + scorerName : "Win for " + scorerName;
     }
 };
 
 TennisGame3.prototype.wonPoint = function(playerName) {
     if (playerName == "player1")
-        this.p1 += 1;
+        this.p1Points += 1;
     else
-        this.p2 += 1;
+        this.p2Points += 1;
 
 };
 
