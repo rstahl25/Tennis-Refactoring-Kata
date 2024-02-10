@@ -14,6 +14,7 @@ TennisGame3.prototype.getScore = function() {
 
     // Checks if it is not match point
     if ((this.p1Points < 4 && this.p2Points < 4) && (this.p1Points + this.p2Points < 6)) {
+
         //if not match point, assign proper term to player who scored
         var scoreUpdate;
         scoreUpdate = pointNames[this.p1Points];
@@ -24,6 +25,7 @@ TennisGame3.prototype.getScore = function() {
             return scoreUpdate + "-" + pointNames[this.p2Points];
         }
     } else {
+        
         // if match point and tied, return 'Duce
         if (this.p1Points == this.p2Points)
             return "Deuce";
